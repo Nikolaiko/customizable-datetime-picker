@@ -1,8 +1,5 @@
+import 'package:customizable_datetime_picker/date_picker_widget.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:customizable_datetime_picker/customizable_datetime_picker.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,35 +13,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _customizableDatetimePickerPlugin = CustomizableDatetimePicker();
+  DateTime _dateTime = DateTime.now(); 
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _customizableDatetimePickerPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -52,10 +25,68 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Date time picker example'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Text(
+                "Simple picker with default settings",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+              ),
+              CustomizableDatePickerWidget(),
+              const Divider(height: 3),
+              const Text(
+                "Picker with theme",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+              ),
+              CustomizableDatePickerWidget(
+                initialDate: _dateTime,
+                dateFormat: "dd-MMMM-yyyy",                            
+                pickerTheme: const DateTimePickerTheme(                
+                  itemTextStyle: TextStyle(    
+                    color: Color(0xFF101010),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600
+                  ),
+                  backgroundColor: Colors.lightBlueAccent,
+                  itemHeight: 80,
+                  pickerHeight: 300,
+                  dividerTheme: DatePickerDividerTheme(
+                    dividerColor: Color(0xFF0073A5),
+                    thickness: 3,
+                    height: 2
+                  )
+                ),
+                onChange: (dateTime, selectedIndex) => _dateTime = dateTime             
+              ),
+              const Divider(height: 3),
+              const Text(
+                "Picker with title",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
+              ),
+              CustomizableDatePickerWidget(        
+                initialDate: _dateTime,
+                  
+                dateFormat: "dd-MMMM-yyyy",                            
+                pickerTheme: const DateTimePickerTheme(                
+                  itemTextStyle: TextStyle(    
+                    color: Color(0xFF101010),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600
+                  ),                  
+                  itemHeight: 80,
+                  pickerHeight: 300,
+                  dividerTheme: DatePickerDividerTheme(
+                    dividerColor: Color(0xFF0073A5),
+                    thickness: 3,
+                    height: 2
+                  )
+                ),
+                onChange: (dateTime, selectedIndex) => _dateTime = dateTime             
+              )
+            ],
+          ),
         ),
       ),
     );

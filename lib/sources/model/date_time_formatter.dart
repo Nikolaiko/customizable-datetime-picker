@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'date_picker.dart';
 import 'date_picker_constants.dart';
-import 'i18n/date_picker_i18n.dart';
+import '../i18n/date_picker_i18n.dart';
 
 const String DATE_FORMAT_SEPARATOR = r'[|,-\/._: ]+';
 
@@ -15,9 +15,9 @@ class DateTimeFormatter {
     }
     switch (pickerMode) {
       case DateTimePickerMode.date:
-        return DATETIME_PICKER_DATE_FORMAT;
+        return defaultDateFormat;
       case DateTimePickerMode.datetime:
-        return DATETIME_PICKER_DATETIME_FORMAT;
+        return defaultDateTimePickerFormat;
     }
   }
 
@@ -66,7 +66,7 @@ class DateTimeFormatter {
         temp.insert(0, dayFormat.toString());
       } else {
         // add default date format
-        temp.insert(0, DATETIME_PICKER_DATE_FORMAT);
+        temp.insert(0, defaultDateFormat);
       }
       result = temp;
     }
@@ -75,8 +75,12 @@ class DateTimeFormatter {
 
   /// Format datetime string
   static String formatDateTime(
-      int value, String format, DateTimePickerLocale? locale, weekday) {
-    if (format.length == 0) {
+    int value, 
+    String format, 
+    DateTimePickerLocale? locale, 
+    weekday
+  ) {
+    if (format.isEmpty) {
       return value.toString();
     }
 

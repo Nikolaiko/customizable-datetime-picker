@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'date_picker_theme.dart';
 import 'date_picker_constants.dart';
-import 'i18n/date_picker_i18n.dart';
-import 'widget/date_picker_widget.dart';
+import '../i18n/date_picker_i18n.dart';
+import '../widget/customizable_date_picker_widget.dart';
 
 enum DateTimePickerMode {
   /// Display DatePicker
@@ -115,16 +115,16 @@ class DatePicker {
     DateTime? lastDate,
     DateTime? initialDate,
     String? dateFormat,
-    DateTimePickerLocale locale: DATETIME_PICKER_LOCALE_DEFAULT,
-    DateTimePickerMode pickerMode: DateTimePickerMode.date,
+    DateTimePickerLocale locale = pickerLocaleDefault,
+    DateTimePickerMode pickerMode = DateTimePickerMode.date,
     Color? backgroundColor,
     Color? textColor,
     TextStyle? itemTextStyle,
     String? titleText,
     String? confirmText,
     String? cancelText,
-    bool looping: false,
-    bool reverse: false,
+    bool looping = false,
+    bool reverse = false,
   }) {
     DateTime? _selectedDate = initialDate;
     final List<Widget> listButtonActions = [
@@ -146,10 +146,10 @@ class DatePicker {
 
     // handle the range of datetime
     if (firstDate == null) {
-      firstDate = DateTime.parse(DATE_PICKER_MIN_DATETIME);
+      firstDate = DateTime.parse(datePickerMinDateTime);
     }
     if (lastDate == null) {
-      lastDate = DateTime.parse(DATE_PICKER_MAX_DATETIME);
+      lastDate = DateTime.parse(datePickerMaxDateTime);
     }
 
     // handle initial DateTime
@@ -158,12 +158,12 @@ class DatePicker {
     }
 
     if (backgroundColor == null)
-      backgroundColor = DateTimePickerTheme.Default.backgroundColor;
+      backgroundColor = DateTimePickerTheme.defaultPickerTheme.backgroundColor;
 //    if (itemTextStyle == null)
 //      itemTextStyle = DateTimePickerTheme.Default.itemTextStyle;
 
     if (textColor == null)
-      textColor = DateTimePickerTheme.Default.itemTextStyle.color;
+      textColor = DateTimePickerTheme.defaultPickerTheme.itemTextStyle.color;
 
     var datePickerDialog = AlertDialog(
       title: Text(
@@ -174,7 +174,7 @@ class DatePicker {
       backgroundColor: backgroundColor,
       content: Container(
         width: 300,
-        child: DatePickerWidget(
+        child: CustomizableDatePickerWidget(
           firstDate: firstDate,
           lastDate: lastDate,
           initialDate: initialDate,
@@ -281,16 +281,14 @@ class _DatePickerComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget pickerWidget = DatePickerWidget(
+    Widget pickerWidget = CustomizableDatePickerWidget(
       firstDate: route.minDateTime,
       lastDate: route.maxDateTime,
       initialDate: route.initialDateTime,
       dateFormat: route.dateFormat,
       locale: route.locale,
-      pickerTheme: route.pickerTheme,
-      onCancel: route.onCancel,
-      onChange: route.onChange,
-      onConfirm: route.onConfirm,
+      pickerTheme: route.pickerTheme,      
+      onChange: route.onChange,      
     );
     return GestureDetector(
       child: AnimatedBuilder(

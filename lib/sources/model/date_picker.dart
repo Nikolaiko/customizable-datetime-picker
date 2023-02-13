@@ -20,10 +20,10 @@ class DatePicker {
   static DateTimePickerLocale localeFromString(String languageCode) {
     switch (languageCode) {
       case 'zh':
-        return DateTimePickerLocale.zh_cn;
+        return DateTimePickerLocale.zhCn;
 
       case 'pt':
-        return DateTimePickerLocale.pt_br;
+        return DateTimePickerLocale.ptBr;
 
       case 'es':
         return DateTimePickerLocale.es;
@@ -65,10 +65,10 @@ class DatePicker {
         return DateTimePickerLocale.tr;
 
       case 'nb':
-        return DateTimePickerLocale.no_nb;
+        return DateTimePickerLocale.noNb;
 
       case 'nn':
-        return DateTimePickerLocale.no_nn;
+        return DateTimePickerLocale.noNn;
 
       case 'fr':
         return DateTimePickerLocale.fr;
@@ -92,7 +92,7 @@ class DatePicker {
         return DateTimePickerLocale.pl;
 
       default:
-        return DateTimePickerLocale.en_us;
+        return DateTimePickerLocale.enUs;
     }
   }
 

@@ -1,4 +1,5 @@
 import 'package:customizable_datetime_picker/date_picker_widget.dart';
+import 'package:customizable_datetime_picker/sources/i18n/date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,17 +31,22 @@ class _MyAppState extends State<MyApp> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              const Divider(thickness: 8),
+              const SizedBox(height: 20),
               const Text(
                 "Simple picker with default settings",
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
               ),
               CustomizableDatePickerWidget(),
-              const Divider(height: 3),
+              const Divider(thickness: 8),
+              const SizedBox(height: 20),
               const Text(
                 "Picker with theme",
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
               ),
               CustomizableDatePickerWidget(
+                locale: DateTimePickerLocale.jp,
+                looping: true,
                 initialDate: _dateTime,
                 dateFormat: "dd-MMMM-yyyy",                            
                 pickerTheme: const DateTimePickerTheme(                
@@ -49,11 +55,11 @@ class _MyAppState extends State<MyApp> {
                     fontSize: 20,
                     fontWeight: FontWeight.w600
                   ),
-                  backgroundColor: Colors.lightBlueAccent,
+                  backgroundColor: Color(0xFFEBEBEB),
                   itemHeight: 80,
                   pickerHeight: 300,
                   dividerTheme: DatePickerDividerTheme(
-                    dividerColor: Color(0xFF0073A5),
+                    dividerColor: Color(0xFF00A962),
                     thickness: 3,
                     height: 2
                   )

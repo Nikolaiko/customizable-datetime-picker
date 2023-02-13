@@ -1,5 +1,5 @@
 name: customizable_datetime_picker
-description: Customizable Datetime Picker for Flutter projects.
+description: Customizable Datetime Picker for Flutter projects. You can customize different parts of the picker like format locale divider color and many others.
 version: 0.0.1
 homepage: https://github.com/Nikolaiko/customizable-datetime-picker
 

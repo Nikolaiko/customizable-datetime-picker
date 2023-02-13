@@ -73,13 +73,13 @@ abstract class _StringsI18n {
 
 enum DateTimePickerLocale {
   /// English (EN) United States
-  en_us,
+  enUs,
 
   /// Chinese (ZH) Simplified
-  zh_cn,
+  zhCn,
 
   /// Portuguese (PT) Brazil
-  pt_br,
+  ptBr,
 
   /// Spanish (ES)
   es,
@@ -121,10 +121,10 @@ enum DateTimePickerLocale {
   tr,
 
   /// Norwegian Bokmål (NO)
-  no_nb,
+  noNb,
 
   /// Norwegian Nynorsk (NO)
-  no_nn,
+  noNn,
 
   /// French (FR)
   fr,
@@ -153,12 +153,12 @@ enum DateTimePickerLocale {
 
 /// Default value of date locale
 const DateTimePickerLocale pickerLocaleDefault =
-    DateTimePickerLocale.en_us;
+    DateTimePickerLocale.enUs;
 
 const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
-  DateTimePickerLocale.en_us: _StringsEnUs(),
-  DateTimePickerLocale.zh_cn: _StringsZhCn(),
-  DateTimePickerLocale.pt_br: _StringsPtBr(),
+  DateTimePickerLocale.enUs: _StringsEnUs(),
+  DateTimePickerLocale.zhCn: _StringsZhCn(),
+  DateTimePickerLocale.ptBr: _StringsPtBr(),
   DateTimePickerLocale.es: _StringsEs(),
   DateTimePickerLocale.ro: _StringsRo(),
   DateTimePickerLocale.bn: _StringsBn(),
@@ -172,8 +172,8 @@ const Map<DateTimePickerLocale, _StringsI18n> datePickerI18n = {
   DateTimePickerLocale.he: _StringsHe(),
   DateTimePickerLocale.id: _StringsId(),
   DateTimePickerLocale.tr: _StringsTr(),
-  DateTimePickerLocale.no_nb: _StringsNoNb(),
-  DateTimePickerLocale.no_nn: _StringsNoNn(),
+  DateTimePickerLocale.noNb: _StringsNoNb(),
+  DateTimePickerLocale.noNn: _StringsNoNn(),
   DateTimePickerLocale.nl: _StringsNl(),
   DateTimePickerLocale.fr: _StringsFr(),
   DateTimePickerLocale.th: _StringsTh(),

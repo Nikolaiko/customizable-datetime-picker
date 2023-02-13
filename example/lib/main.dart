@@ -1,5 +1,4 @@
 import 'package:customizable_datetime_picker/date_picker_widget.dart';
-import 'package:customizable_datetime_picker/sources/i18n/date_picker_i18n.dart';
 import 'package:flutter/material.dart';
 
 void main() {

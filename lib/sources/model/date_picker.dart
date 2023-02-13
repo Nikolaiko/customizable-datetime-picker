@@ -126,17 +126,17 @@ class DatePicker {
     bool looping = false,
     bool reverse = false,
   }) {
-    DateTime? _selectedDate = initialDate;
+    DateTime? selectedDate = initialDate;
     final List<Widget> listButtonActions = [
       TextButton(
-        style: TextButton.styleFrom(primary: textColor),
+        style: TextButton.styleFrom(foregroundColor: textColor),
         child: Text(confirmText ?? "OK"),
         onPressed: () {
-          Navigator.pop(context, _selectedDate);
+          Navigator.pop(context, selectedDate);
         },
       ),
       TextButton(
-        style: TextButton.styleFrom(primary: textColor),
+        style: TextButton.styleFrom(foregroundColor: textColor),
         child: Text(cancelText ?? "Cancel"),
         onPressed: () {
           Navigator.pop(context);
@@ -145,34 +145,26 @@ class DatePicker {
     ];
 
     // handle the range of datetime
-    if (firstDate == null) {
-      firstDate = DateTime.parse(datePickerMinDateTime);
-    }
-    if (lastDate == null) {
-      lastDate = DateTime.parse(datePickerMaxDateTime);
-    }
+    firstDate ??= DateTime.parse(datePickerMinDateTime);
+    lastDate ??= DateTime.parse(datePickerMaxDateTime);
 
     // handle initial DateTime
-    if (initialDate == null) {
-      initialDate = DateTime.now();
-    }
+    initialDate ??= DateTime.now();
 
-    if (backgroundColor == null)
-      backgroundColor = DateTimePickerTheme.defaultPickerTheme.backgroundColor;
+    backgroundColor ??= DateTimePickerTheme.defaultPickerTheme.backgroundColor;
 //    if (itemTextStyle == null)
 //      itemTextStyle = DateTimePickerTheme.Default.itemTextStyle;
 
-    if (textColor == null)
-      textColor = DateTimePickerTheme.defaultPickerTheme.itemTextStyle.color;
+    textColor ??= DateTimePickerTheme.defaultPickerTheme.itemTextStyle.color;
 
     var datePickerDialog = AlertDialog(
       title: Text(
         titleText ?? "Select Date",
         style: TextStyle(color: textColor),
       ),
-      contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 14),
+      contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 14),
       backgroundColor: backgroundColor,
-      content: Container(
+      content: SizedBox(
         width: 300,
         child: CustomizableDatePickerWidget(
           firstDate: firstDate,
@@ -184,9 +176,8 @@ class DatePicker {
             backgroundColor: backgroundColor,
             itemTextStyle: itemTextStyle ?? TextStyle(color: textColor),
           ),
-          onChange: ((DateTime date, list) {
-            print(date);
-            _selectedDate = date;
+          onChange: ((DateTime date, list) {            
+            selectedDate = date;
           }),
           looping: looping,
         ),
@@ -277,7 +268,7 @@ class _DatePickerComponent extends StatelessWidget {
   final double _pickerHeight;
 
   _DatePickerComponent({required this.route, required pickerHeight})
-      : this._pickerHeight = pickerHeight;
+      : _pickerHeight = pickerHeight;
 
   @override
   Widget build(BuildContext context) {

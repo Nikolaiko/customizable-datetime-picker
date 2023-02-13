@@ -4,13 +4,13 @@ import 'date_picker.dart';
 import 'date_picker_constants.dart';
 import '../i18n/date_picker_i18n.dart';
 
-const String DATE_FORMAT_SEPARATOR = r'[|,-\/._: ]+';
+const String dateFormatSeparator = r'[|,-\/._: ]+';
 
 class DateTimeFormatter {
   /// Get default value of date format.
   static String generateDateFormat(
       String dateFormat, DateTimePickerMode pickerMode) {
-    if (dateFormat.length > 0) {
+    if (dateFormat.isNotEmpty) {
       return dateFormat;
     }
     switch (pickerMode) {
@@ -41,7 +41,7 @@ class DateTimeFormatter {
     if (dateFormat == null || dateFormat.isEmpty) {
       return [];
     }
-    List<String> result = dateFormat.split(RegExp(DATE_FORMAT_SEPARATOR));
+    List<String> result = dateFormat.split(RegExp(dateFormatSeparator));
     if (mode == DateTimePickerMode.datetime) {      
       List<String> temp = [];
       StringBuffer dayFormat = StringBuffer();

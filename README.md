@@ -1,8 +1,24 @@
 # customizable_datetime_picker
 
-A new Flutter plugin project.
+Customizable Datetime Picker for Flutter projects. You can customize different parts of the picker like format locale divider color and many others.
 
-## Getting Started
+<p>
+  <img src="https://media.giphy.com/media/iATbwkKNK982AAWlac/giphy.gif?raw=true"
+    alt="An animated image of the datepicker" height="400"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://media.giphy.com/media/iATbwkKNK982AAWlac/giphy.gif?raw=true"
+   alt="An animated image of the datepicker" height="400"/>
+</p>
+
+## Features
+
+Use this plugin in your Flutter app to:
+
+* Display Cupertino style DatePicker with customizable parts.
+* You need to change even small parts of the pciker, like color and thickness of the dividers. Picker item height and background color.
+* You need to select Locale and date format. 
+
+## Usage
 
 This project is a starting point for a Flutter
 [plug-in package](https://flutter.dev/developing-packages/),

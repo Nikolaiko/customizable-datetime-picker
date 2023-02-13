@@ -3,7 +3,7 @@
 Customizable Datetime Picker for Flutter projects. You can customize different parts of the picker like format locale divider color and many others.
 
 <p>
-  <img src="https://media.giphy.com/media/iATbwkKNK982AAWlac/giphy.gif?raw=true"
+  <img src="https://media.giphy.com/media/8GPikjiC1SVQiWk2Tq/giphy.gif"?raw=true"
     alt="An animated image of the datepicker" height="400"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://media.giphy.com/media/iATbwkKNK982AAWlac/giphy.gif?raw=true"

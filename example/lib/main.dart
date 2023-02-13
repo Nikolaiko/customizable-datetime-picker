@@ -59,36 +59,11 @@ class _MyAppState extends State<MyApp> {
                   )
                 ),
                 onChange: (dateTime, selectedIndex) => _dateTime = dateTime             
-              ),
-              const Divider(height: 3),
-              const Text(
-                "Picker with title",
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
-              ),
-              CustomizableDatePickerWidget(        
-                initialDate: _dateTime,
-                  
-                dateFormat: "dd-MMMM-yyyy",                            
-                pickerTheme: const DateTimePickerTheme(                
-                  itemTextStyle: TextStyle(    
-                    color: Color(0xFF101010),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600
-                  ),                  
-                  itemHeight: 80,
-                  pickerHeight: 300,
-                  dividerTheme: DatePickerDividerTheme(
-                    dividerColor: Color(0xFF0073A5),
-                    thickness: 3,
-                    height: 2
-                  )
-                ),
-                onChange: (dateTime, selectedIndex) => _dateTime = dateTime             
               )
-            ],
-          ),
-        ),
-      ),
+            ]
+          )
+        )
+      )
     );
   }
 }

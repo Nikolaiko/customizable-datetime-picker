@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Chinese (ZH) Simplified
-class _StringsZhCn extends _StringsI18n {
+class _StringsZhCn extends StringsI18n {
   const _StringsZhCn();
 
   @override

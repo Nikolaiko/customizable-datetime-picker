@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// English (EN) United States
-class _StringsHt extends _StringsI18n {
+class _StringsHt extends StringsI18n {
   const _StringsHt();
 
   @override

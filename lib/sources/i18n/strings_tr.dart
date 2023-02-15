@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Turkish (TR)
-class _StringsTr extends _StringsI18n {
+class _StringsTr extends StringsI18n {
   const _StringsTr();
 
   @override

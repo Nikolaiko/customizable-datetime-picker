@@ -1,13 +1,14 @@
+import 'package:customizable_datetime_picker/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 
-import 'date_picker_theme.dart';
 import 'date_picker_constants.dart';
-import '../i18n/date_picker_i18n.dart';
-import '../widget/customizable_date_picker_widget.dart';
 
 enum DateTimePickerMode {
   /// Display DatePicker
   date,
+
+  /// Display TimePicker
+  time,
 
   /// Display DateTimePicker
   datetime,
@@ -267,7 +268,7 @@ class _DatePickerComponent extends StatelessWidget {
   final _DatePickerRoute route;
   final double _pickerHeight;
 
-  _DatePickerComponent({required this.route, required pickerHeight})
+  const _DatePickerComponent({required this.route, required pickerHeight})
       : _pickerHeight = pickerHeight;
 
   @override
@@ -278,7 +279,7 @@ class _DatePickerComponent extends StatelessWidget {
       initialDate: route.initialDateTime,
       dateFormat: route.dateFormat,
       locale: route.locale,
-      pickerTheme: route.pickerTheme,      
+      pickerTheme: route.pickerTheme ?? DateTimePickerTheme.defaultPickerTheme,      
       onChange: route.onChange,      
     );
     return GestureDetector(

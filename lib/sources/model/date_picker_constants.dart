@@ -10,3 +10,4 @@ const String defaultTimeFormat = 'HH:mm:ss';
 const String defaultDateTimePickerFormat = 'yyyyMMdd HH:mm:ss';
 
 const EdgeInsets pickerPaddings = EdgeInsets.symmetric(horizontal: 7, vertical: 18);
+const double dividerPadding = 0.2678571429;

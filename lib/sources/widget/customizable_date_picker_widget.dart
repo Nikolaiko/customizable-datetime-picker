@@ -9,8 +9,6 @@ import 'package:customizable_datetime_picker/sources/widget/date_picker_divider_
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-const double dividerPadding = 0.2678571429;
-
 /// DatePicker widget.
 class CustomizableDatePickerWidget extends StatefulWidget {
   CustomizableDatePickerWidget({
@@ -23,6 +21,7 @@ class CustomizableDatePickerWidget extends StatefulWidget {
     this.pickerTheme = DateTimePickerTheme.defaultPickerTheme,    
     this.onChange,
     this.looping = false,
+    this.separatorWidget
   }) : super(key: key) {
     DateTime minTime = firstDate ?? DateTime.parse(datePickerMinDateTime);
     DateTime maxTime = lastDate ?? DateTime.parse(datePickerMaxDateTime);
@@ -32,17 +31,14 @@ class CustomizableDatePickerWidget extends StatefulWidget {
   final DateTime? firstDate, lastDate, initialDate;
   final String? dateFormat;
   final DateTimePickerLocale? locale;
-  final DateTimePickerTheme? pickerTheme;
+  final DateTimePickerTheme pickerTheme;
+  final Widget? separatorWidget;
 
   final DateValueCallback? onChange;
   final bool looping;
 
   @override
-  State<StatefulWidget> createState() => _CustomizableDatePickerWidgetState(
-    initialDate, 
-    firstDate, 
-    lastDate
-  );
+  State<StatefulWidget> createState() => _CustomizableDatePickerWidgetState();
 }
 
 class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWidget> {
@@ -60,18 +56,15 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
   bool _isChangeDateRange = false;  
   bool _lock = false;
 
-  _CustomizableDatePickerWidgetState(
-    DateTime? initialDate,
-    DateTime? firstDate,
-    DateTime? lastDate
-  ) {    
-    DateTime initDateTime = initialDate ?? DateTime.now();
+  @override
+  void initState() {
+    DateTime initDateTime = widget.initialDate ?? DateTime.now();
     _currentYear = initDateTime.year;
     _currentMonth = initDateTime.month;
     _currentDay = initDateTime.day;
 
-    _minDateTime = firstDate ?? DateTime.parse(datePickerMinDateTime);
-    _maxDateTime = lastDate ?? DateTime.parse(datePickerMaxDateTime);
+    _minDateTime = widget.firstDate ?? DateTime.parse(datePickerMinDateTime);
+    _maxDateTime = widget.lastDate ?? DateTime.parse(datePickerMaxDateTime);
 
     _yearRange = RangeHelper.calculateYearRange(_minDateTime, _maxDateTime);
     _currentYear = min(max(_minDateTime.year, _currentYear!), _maxDateTime.year);
@@ -114,6 +107,7 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
       'M': _monthRange, 
       'd': _dayRange
     };
+    super.initState();
   }
 
   @override
@@ -121,14 +115,9 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
     return GestureDetector(
       child: Material(
         color: Colors.transparent, 
-        child: _renderPickerView(context)
+        child: _renderDatePickerWidget()
       ),
     );
-  }
-
-  Widget _renderPickerView(BuildContext context) {
-    Widget datePickerWidget = _renderDatePickerWidget();
-    return datePickerWidget;
   }
 
   Widget _renderDatePickerWidget() {
@@ -144,10 +133,14 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
         valueRange: valueRange,
         format: format,
         valueChanged: (value) => _onValueChange(value, format),
-        fontSize: widget.pickerTheme!.itemTextStyle.fontSize 
+        fontSize: widget.pickerTheme.itemTextStyle.fontSize 
           ?? sizeByFormat(widget.dateFormat!)
       );
       pickers.add(pickerColumn);
+      
+      if (widget.separatorWidget != null && formatArr.last != format) {
+        pickers.add(_renderSeparatorRow(widget.separatorWidget!));
+      }
     }    
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
@@ -165,14 +158,14 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
       }
     ) {
       EdgeInsets topInsets =  EdgeInsets.only(
-        top: (widget.pickerTheme!.pickerHeight / 2) 
-        + (widget.pickerTheme!.itemTextStyle.fontSize! / 2)
-        + widget.pickerTheme!.itemHeight * dividerPadding
+        top: (widget.pickerTheme.pickerHeight / 2) 
+        + (widget.pickerTheme.itemTextStyle.fontSize! / 2)
+        + widget.pickerTheme.itemHeight * dividerPadding
       );
       EdgeInsets bottomInsets =  EdgeInsets.only(
-        top: (widget.pickerTheme!.pickerHeight / 2) 
-        - (widget.pickerTheme!.itemTextStyle.fontSize! / 2)
-        - widget.pickerTheme!.itemHeight * dividerPadding
+        top: (widget.pickerTheme.pickerHeight / 2) 
+        - (widget.pickerTheme.itemTextStyle.fontSize! / 2)
+        - widget.pickerTheme.itemHeight * dividerPadding
       );
       return Expanded(
         flex: 1,
@@ -182,17 +175,17 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
             Positioned(
               child: Container(
                 padding: pickerPaddings,
-                height: widget.pickerTheme!.pickerHeight,
+                height: widget.pickerTheme.pickerHeight,
                 decoration: BoxDecoration(
-                  color: widget.pickerTheme!.backgroundColor
+                  color: widget.pickerTheme.backgroundColor
                 ),
                 child: CupertinoPicker(
                   selectionOverlay: Container(),
-                  backgroundColor: widget.pickerTheme!.backgroundColor,
+                  backgroundColor: widget.pickerTheme.backgroundColor,
                   scrollController: scrollCtrl,
-                  squeeze: widget.pickerTheme!.squeeze,
-                  diameterRatio: widget.pickerTheme!.diameterRatio,
-                  itemExtent: widget.pickerTheme!.itemHeight,
+                  squeeze: widget.pickerTheme.squeeze,
+                  diameterRatio: widget.pickerTheme.diameterRatio,
+                  itemExtent: widget.pickerTheme.itemHeight,
                   onSelectedItemChanged: valueChanged,
                   looping: widget.looping,
                   children: List<Widget>.generate(
@@ -211,13 +204,13 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
             Positioned(
               child: DatePickerDivider(
                 dividerPaddings: bottomInsets,
-                theme: widget.pickerTheme!.dividerTheme
+                theme: widget.pickerTheme.dividerTheme
               )
             ),
             Positioned(
               child: DatePickerDivider(
                 dividerPaddings: topInsets,
-                theme: widget.pickerTheme!.dividerTheme
+                theme: widget.pickerTheme.dividerTheme
               )
             ),
           ],
@@ -225,7 +218,7 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
       );
   }
 
-   Widget _renderDatePickerItemComponent(
+  Widget _renderDatePickerItemComponent(
     int value, 
     String format, 
     double? fontSize
@@ -233,7 +226,7 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
     var weekday = DateTime(_currentYear!, _currentMonth!, value).weekday;
 
     return Container(
-      height: widget.pickerTheme!.itemHeight,
+      height: widget.pickerTheme.itemHeight,
       alignment: Alignment.center,
       child: AutoSizeText(
         DateTimeFormatter.formatDateTime(
@@ -242,9 +235,18 @@ class _CustomizableDatePickerWidgetState extends State<CustomizableDatePickerWid
           widget.locale, 
           weekday
         ),        
-        style: widget.pickerTheme?.itemTextStyle ??
-          defaultItemTextStyle,
+        style: widget.pickerTheme.itemTextStyle
       )
+    );
+  }
+
+  Widget _renderSeparatorRow(Widget separator) {
+    return Container(
+      height: widget.pickerTheme.pickerHeight,
+      color: widget.pickerTheme.backgroundColor,
+      child: Center(      
+        child: separator
+      ),
     );
   }
 

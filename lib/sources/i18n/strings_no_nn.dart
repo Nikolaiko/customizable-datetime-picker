@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Norwegian Nynorsk (NO)
-class _StringsNoNn extends _StringsI18n {
+class _StringsNoNn extends StringsI18n {
   const _StringsNoNn();
 
   @override

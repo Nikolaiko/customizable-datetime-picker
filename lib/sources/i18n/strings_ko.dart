@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Korea (KO)
-class _StringsKo extends _StringsI18n {
+class _StringsKo extends StringsI18n {
   const _StringsKo();
 
   @override

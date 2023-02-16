@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Bengali (BN)
-class _StringsBn extends _StringsI18n {
+class _StringsBn extends StringsI18n {
   const _StringsBn();
 
   @override

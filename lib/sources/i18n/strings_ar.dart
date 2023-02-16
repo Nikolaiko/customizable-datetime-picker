@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Arabic (AR)
-class _StringsAr extends _StringsI18n {
+class _StringsAr extends StringsI18n {
   const _StringsAr();
 
   @override

@@ -1,6 +1,6 @@
 part of 'date_picker_i18n.dart';
 
-class _StringsId extends _StringsI18n {
+class _StringsId extends StringsI18n {
   const _StringsId();
 
   @override

@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Thai (TH) Thai Land
-class _StringsTh extends _StringsI18n {
+class _StringsTh extends StringsI18n {
   const _StringsTh();
 
   @override

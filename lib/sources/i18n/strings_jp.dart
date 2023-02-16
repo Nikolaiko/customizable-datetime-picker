@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Japanese (JP)
-class _StringsJp extends _StringsI18n {
+class _StringsJp extends StringsI18n {
   const _StringsJp();
 
   @override

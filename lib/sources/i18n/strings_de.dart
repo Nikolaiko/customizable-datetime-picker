@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// German (DE)
-class _StringsDe extends _StringsI18n {
+class _StringsDe extends StringsI18n {
   const _StringsDe();
 
   @override

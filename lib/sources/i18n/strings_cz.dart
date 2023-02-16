@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Czech (CZ)
-class _StringsCz extends _StringsI18n {
+class _StringsCz extends StringsI18n {
   const _StringsCz();
 
   @override

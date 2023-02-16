@@ -18,7 +18,9 @@ class DateTimeFormatter {
         return defaultDateFormat;
       case DateTimePickerMode.datetime:
         return defaultDateTimePickerFormat;
-    }
+      case DateTimePickerMode.time:
+        return defaultTimeFormat;
+    } 
   }
 
   /// Check if the date format is for day(contain y、M、d、E) or not.
@@ -40,7 +42,7 @@ class DateTimeFormatter {
   ) {
     if (dateFormat == null || dateFormat.isEmpty) {
       return [];
-    }
+    }    
     List<String> result = dateFormat.split(RegExp(dateFormatSeparator));
     if (mode == DateTimePickerMode.datetime) {      
       List<String> temp = [];
@@ -69,7 +71,7 @@ class DateTimeFormatter {
         temp.insert(0, defaultDateFormat);
       }
       result = temp;
-    }
+    }    
     return result;
   }
 
@@ -117,35 +119,6 @@ class DateTimeFormatter {
     }
     return result;
   }
-
-//  /// Format day display
-//  static String formatDate(
-//      DateTime dateTime, String format, DateTimePickerLocale locale) {
-//    if (format == null || format.length == 0) {
-//      return dateTime.toString();
-//    }
-//
-//    String result = format;
-//    // format year text
-//    if (format.contains('y')) {
-//      result = _formatYear(dateTime.year, result, locale);
-//    }
-//    // format month text
-//    if (format.contains('M')) {
-//      result = _formatMonth(dateTime.month, result, locale);
-//    }
-//    // format day text
-//    if (format.contains('d')) {
-//      result = _formatDay(dateTime.day, result, locale);
-//    }
-//    if (format.contains('E')) {
-//      result = _formatWeek(dateTime.weekday, result, locale);
-//    }
-//    if (result == format) {
-//      return dateTime.toString();
-//    }
-//    return result;
-//  }
 
   /// format year text
   static String _formatYear(
@@ -217,8 +190,8 @@ class DateTimeFormatter {
   static String _formatNumber(int value, String format, String unit) {
     if (format.contains('$unit$unit')) {
       return format.replaceAll('$unit$unit', value.toString().padLeft(2, '0'));
-    } else if (format.contains('$unit')) {
-      return format.replaceAll('$unit', value.toString());
+    } else if (format.contains(unit)) {
+      return format.replaceAll(unit, value.toString());
     }
     return value.toString();
   }

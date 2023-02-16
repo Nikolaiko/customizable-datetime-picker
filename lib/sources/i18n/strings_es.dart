@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Spanish (ES)
-class _StringsEs extends _StringsI18n {
+class _StringsEs extends StringsI18n {
   const _StringsEs();
 
   @override

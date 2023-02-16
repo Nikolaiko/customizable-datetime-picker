@@ -1,7 +1,7 @@
 part of 'date_picker_i18n.dart';
 
 /// Swedish (SV)
-class _StringsSv extends _StringsI18n {
+class _StringsSv extends StringsI18n {
   const _StringsSv();
 
   @override

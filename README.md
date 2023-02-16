@@ -8,7 +8,7 @@ Customizable DateTime (or only Time) Picker for Flutter projects. You can custom
   &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="https://media.giphy.com/media/iATbwkKNK982AAWlac/giphy.gif?raw=true"
    alt="An animated image of the datepicker" height="400"/>
-  <img src="https://github.com/Nikolaiko/customizable-datetime-picker/blob/adding-time-pciker/screenshots/screen1.png"
+  <img src="https://github.com/Nikolaiko/customizable-datetime-picker/blob/main/screenshots/screen1.png"
    alt="An animated image of the datepicker" height="400"/>   
 </p>
 

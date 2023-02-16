@@ -7,6 +7,6 @@ on:
 
 jobs:
   publish:
-    uses: Nikolaiko/customizable-datetime-picker/.github/workflows/publish.yml@v1
+    uses: Nikolaiko/customizable-datetime-picker/.github/workflows/publish.yml@main
     # with:
     #   working-directory: path/to/package/within/repository

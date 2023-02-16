@@ -122,3 +122,7 @@ CustomizableTimePickerWidget(
 )
 ```
 More details in [example](https://github.com/Nikolaiko/DrawOnImagePlugin/tree/main/example).
+
+### TODO
+* Add 12/24 hours support
+* Add DateTimePicker Widget

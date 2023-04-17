@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:customizable_datetime_picker/date_picker_widget.dart';
+import 'package:customizable_datetime_picker/sources/consts/semantic_labels.dart';
 import 'package:customizable_datetime_picker/sources/model/date_picker_constants.dart';
 import 'package:customizable_datetime_picker/sources/model/date_time_formatter.dart';
 import 'package:customizable_datetime_picker/sources/widget/date_picker_divider_widget.dart';
@@ -66,6 +67,9 @@ class _CustomizableTimePickerWidgetState extends State<CustomizableTimePickerWid
   @override
   void initState() {
     _startingDate = widget.initialTime ?? DateTime.now();
+    _currentHour = _startingDate.hour;
+    _currentMinute = _startingDate.minute;
+    _currentSecond = _startingDate.second;  
 
     _hoursScrollCtrl = FixedExtentScrollController(
       initialItem: _startingDate.hour
@@ -103,6 +107,7 @@ class _CustomizableTimePickerWidgetState extends State<CustomizableTimePickerWid
     List<String> formatArr =
       DateTimeFormatter.splitDateFormat(widget.timeFormat);
     
+    int index = 0;
     for (String format in formatArr) {
       List<int> valueRange = _findPickerItemRange(format)!;
 
@@ -111,13 +116,17 @@ class _CustomizableTimePickerWidgetState extends State<CustomizableTimePickerWid
         valueRange: valueRange,
         format: format,
         valueChanged: (value) => _onValueChange(value, format),
-        fontSize: widget.pickerTheme.itemTextStyle.fontSize         
-      );      
+        semanticLabel: SemanticLabels.rowLabels[index],
+        fontSize: widget.pickerTheme.itemTextStyle.fontSize
+      );
+
       pickers.add(pickerColumn);
 
       if (widget.separatorWidget != null && formatArr.last != format) {
         pickers.add(_renderSeparatorRow(widget.separatorWidget!));
       }
+
+      index += 1;
     }    
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
@@ -131,6 +140,7 @@ class _CustomizableTimePickerWidgetState extends State<CustomizableTimePickerWid
       required List<int> valueRange,
       required String format,
       required ValueChanged<int> valueChanged,
+      required String semanticLabel,
       double? fontSize
     }
   ) {
@@ -156,24 +166,27 @@ class _CustomizableTimePickerWidgetState extends State<CustomizableTimePickerWid
                 decoration: BoxDecoration(
                   color: widget.pickerTheme.backgroundColor
                 ),
-                child: CupertinoPicker(
-                  selectionOverlay: Container(),
-                  backgroundColor: widget.pickerTheme.backgroundColor,
-                  scrollController: scrollCtrl,
-                  squeeze: widget.pickerTheme.squeeze,
-                  diameterRatio: widget.pickerTheme.diameterRatio,
-                  itemExtent: widget.pickerTheme.itemHeight,
-                  onSelectedItemChanged: valueChanged,
-                  looping: widget.looping,
-                  children: List<Widget>.generate(
-                    valueRange.last - valueRange.first + 1,
-                    (index) {
-                      return _renderDatePickerItemComponent(
-                        index,
-                        format,
-                        fontSize,
-                      );
-                    },
+                child: Semantics(
+                  label: semanticLabel,
+                  child: CupertinoPicker(
+                    selectionOverlay: Container(),
+                    backgroundColor: widget.pickerTheme.backgroundColor,
+                    scrollController: scrollCtrl,
+                    squeeze: widget.pickerTheme.squeeze,
+                    diameterRatio: widget.pickerTheme.diameterRatio,
+                    itemExtent: widget.pickerTheme.itemHeight,
+                    onSelectedItemChanged: valueChanged,
+                    looping: widget.looping,
+                    children: List<Widget>.generate(
+                      valueRange.last - valueRange.first + 1,
+                      (index) {
+                        return _renderDatePickerItemComponent(
+                          index,
+                          format,
+                          fontSize,
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

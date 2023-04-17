@@ -1,3 +1,8 @@
+## 0.0.3
+
+* Fixed bug with default values in CustomizableTimePickerWidget. 
+* Added tests for CustomizableTimePickerWidget.
+
 ## 0.0.2
 
 * CustomizableTimePickerWidget class was added. Now it is possible to create timepicker as well. 

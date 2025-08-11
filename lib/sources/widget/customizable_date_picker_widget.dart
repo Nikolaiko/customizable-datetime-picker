@@ -12,7 +12,7 @@ import 'package:flutter/cupertino.dart';
 /// DatePicker widget.
 class CustomizableDatePickerWidget extends StatefulWidget {
   CustomizableDatePickerWidget({
-    Key? key,
+    super.key,
     this.firstDate,
     this.lastDate,
     this.initialDate,
@@ -22,7 +22,7 @@ class CustomizableDatePickerWidget extends StatefulWidget {
     this.onChange,
     this.looping = false,
     this.separatorWidget
-  }) : super(key: key) {
+  }) {
     DateTime minTime = firstDate ?? DateTime.parse(datePickerMinDateTime);
     DateTime maxTime = lastDate ?? DateTime.parse(datePickerMaxDateTime);
     assert(minTime.compareTo(maxTime) < 0);

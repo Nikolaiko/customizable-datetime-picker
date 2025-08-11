@@ -1,3 +1,8 @@
+## 0.0.4
+
+* Added support for new flutter sdk version. 
+* Added support for new Android gradle build API's.
+
 ## 0.0.3
 
 * Fixed bug with default values in CustomizableTimePickerWidget. 

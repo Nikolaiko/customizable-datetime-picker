@@ -207,8 +207,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
     this.onConfirm,
     this.theme,
     this.barrierLabel,
-    RouteSettings? settings,
-  }) : super(settings: settings);
+    super.settings,
+  });
 
   final DateTime? minDateTime, maxDateTime, initialDateTime;
   final String? dateFormat;
